@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require("mongoose");
 const _= require("lodash");
+require('dotenv').config();
 
 const app= express();
 
@@ -11,7 +12,7 @@ app.use(express.static("public"));
 
 // connecting to MongoDB
 mongoose.set("strictQuery",false);
-mongoose.connect("mongodb+srv://nileshseth007:clusterid007@cluster0.hswqffd.mongodb.net/todolistDB", function(err){
+mongoose.connect(process.env.MONGO_URI, function(err){
     if(err) console.log (err);
     else console.log("Connected to mongoDB");
 })
