@@ -1,0 +1,49 @@
+<%- include("header") -%>
+<body>
+    <!-- <% if(listTitle === "Saturday" || listTitle ==="Sunday") { %>  
+
+        // scriptlet tag (<% %> used for control flow statement and no output) 
+
+        <h1 style="color: purple"> It's a <%= listTitle %>! </h1>
+
+        // <%= %> used for getting values from the server and showing as output 
+
+    <% } else { %>
+        
+        <h1 style="color: blue"> It's a <%= listTitle %>! </h1>
+
+     <% } %> -->
+    
+    <div class="box" id="heading">
+        <h1> <%= listTitle %> </h1>
+    </div>
+    
+
+    <div class="box">
+
+        
+            
+        
+        <% newListItems.forEach(function(newitem){ %>
+
+            <form action="/delete" method="post">
+
+                <div class="item">
+                    <input type="checkbox" name="checkbox" value="<%= newitem._id %>" onChange="this.form.submit()">
+                   <p>  <%= newitem.name %>  </p> 
+                </div>
+                <input type="hidden" name="listName" value="<%= listTitle %>">
+            </form>
+        <% }) %>
+
+        <form action="/" method="post">
+            <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
+            <button type="submit" name="list" value="<%= listTitle %>" >+</button>
+        </form>
+    </div>
+        
+    
+</body>
+<%- include("footer") -%>
+
+</html>
